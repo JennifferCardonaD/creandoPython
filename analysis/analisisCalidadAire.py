@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt 
 
 from generators.generadorICA import generarDatosICA
 
@@ -9,4 +10,12 @@ def construirDataICA():
     dataFrameICA.to_csv("datosIca.csv",index=False)
     print(dataFrameICA)
 
+
+
+#generando grafica de los datos por comuna
+
+    datosOrdenadosPorComuna=dataFrameICA.groupby("comuna")["ica"].mean()
+    plt.figure(figsize=(20,20))
+    datosOrdenadosPorComuna.plot(kind="bar",color="green")
+    plt.show()
 construirDataICA()
